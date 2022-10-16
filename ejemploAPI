@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Ejemplo API</title>
+
+</head>
+
+<body>
+          <style>
+                    article {
+                              display: flex;
+                              align-items: center;
+                              background-color: cyan;
+                              height: 60px;
+                              width: 50%;
+                              padding: 20px;
+
+                    }
+
+                    p {
+                              justify-content: center;
+                    }
+
+                    button {
+                              padding: 5px;
+                              margin: 20px;
+                    }
+          </style>
+
+
+
+          <h1>Llamada de APIs</h1>
+          <article>
+                    <button onclick="buscar()">Frase del día</button>
+                    <p id=""></p>
+                    <p id="Prediccion"></p>
+                    <form>
+
+
+                              <label for="Signo">Seleccione su Signo Zodiacal</label>
+                              <select  name="sign">
+                                        <option value="Aries">Aries</option>
+                                        <option value="Taurus">Tauro</option>
+                                        <option value="Gemini">Geminis</option>
+                                        <option value="Cancer">Cancer</option>
+                                        <option value="Leo">Leo</option>
+                                        <option value="Virgo">Virgo</option>
+                                        <option value="Libra">Libra</option>
+                                        <option value="Scorpio">Escorpio</option>
+                                        <option value="Sagittarius">Sagitario</option>
+                                        <option value="Capricorn">Capricornio</option>
+                                        <option value="Aquarius">Acuario</option>
+                                        <option value="Pisces">Piscis</option>
+                                        <input id="Signo" type="submit">
+                    </form>
+
+
+          </article>
+          <script>
+
+                    const options = {
+                              method: 'POST',
+                              headers: {
+                                        'X-RapidAPI-Key': '05078d8ceamsh1d4c3f3c9eeed80p119089jsn30a3637a4545',
+                                        'X-RapidAPI-Host': 'sameer-kumar-aztro-v1.p.rapidapi.com'
+                              }
+                    };
+                    function buscar(){
+                              let eleccionSigno=document.getElementById("Signo");
+                             console.log(eleccionSigno);
+                             let linkApi="https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=" + eleccionSigno + "&day=tomorrow"
+                              fetch(linkApi)
+                              .then(response => response.json())
+                              .then(data => {
+                                      let  prediccion=document.getElementById("Prediccion");
+                                        prediccion.innerHTML=data.description;
+                              }  )  }
+                                              
+
+
+
+
+
+
+
+
+          </script>
+          <footer>
+
+          </footer>
+
+</body>
+
+</html>
